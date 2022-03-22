@@ -1,10 +1,27 @@
 import React from 'react';
-import FormInput from '../form-input';
-import CustomButton from '../Custom-button';
-import { signInWithGoogle } from '../../firebase/Utils'
+//import FormInput from '../form-input';
+//import CustomButton from '../Custom-button';
+import { signInWithGoogle, createUserDocumentFromAuth } from '../../firebase/Utils'
 import './styles.scss'
 
-class SignIn extends React.Component {
+
+const SignIn = () => {
+    const logGoogleUser = async () => {
+        const { user } = await signInWithGoogle()
+        const userDocRef = await createUserDocumentFromAuth(user)
+    }
+    return (
+        <div>
+            <h1>Sign In Page</h1>
+            <button onClick={logGoogleUser}>Sign in with Google Popup</button>
+            
+        </div>
+    );
+};
+
+export default SignIn;
+
+/* class SignIn extends React.Component {
     constructor(props) {
         super(props);
 
@@ -61,6 +78,6 @@ class SignIn extends React.Component {
         );
     }
  
-}
+} 
 
-export default SignIn;
+export default SignIn;*/
